@@ -1,0 +1,21 @@
+{
+  "pages": [
+    "pages/index/register",
+    "pages/index/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "从心拼车",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "plugins": {
+    "ocr-plugin": {
+      "version": "3.1.1",
+      "provider": "wx4418e3e031e551be"
+    }
+  }
+}

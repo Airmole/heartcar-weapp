@@ -1,0 +1,23 @@
+{
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "pages/index/register",
+          "pathName": "pages/index/register",
+          "query": "type=driver",
+          "scene": null
+        }
+      ]
+    }
+  }
+}
