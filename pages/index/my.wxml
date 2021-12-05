@@ -1,0 +1,75 @@
+<!--pages/index/my.wxml-->
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <view class="userinfo-avatar shadow-blur">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <view class="margin-top-sm nickname" wx:if="{{hasLogined}}">{{userInfo.nickname}}</view>
+    <view class="margin-top-sm nickname" bindtap="goLogin" wx:else>
+      <open-data type="userNickName"></open-data>您尚未登录
+    </view>
+    <image src="https://upload-images.jianshu.io/upload_images/4697920-0b3859b5e4ef17ec.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+
+
+  <view class="cu-list grid col-3">
+    <view class="cu-item">
+      <navigator url="{{hasLogined?'../order/list?type=0':''}}">
+        <view class="cuIcon-list text-green"></view>
+        <text>所有订单</text>
+      </navigator>
+    </view>
+    <view class="cu-item">
+      <navigator url="{{hasLogined?'../order/list?type=1':''}}">
+        <view class="cuIcon-timefill text-green"></view>
+        <text>未完成</text>
+      </navigator>
+    </view>
+    <view class="cu-item">
+      <navigator url="{{hasLogined?'../order/list?type=2':''}}">
+        <view class="cuIcon-roundcheckfill text-green"></view>
+        <text>已完成</text>
+      </navigator>
+    </view>
+  </view>
+
+
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+    <navigator class="cu-item arrow" url="./register?type=driver">
+      <button class="cu-btn content">
+        <text class="cuIcon-roundaddfill text-cyan"></text>
+        <text class="text-grey">成为司机</text>
+      </button>
+    </navigator>
+    <view class="cu-item arrow">
+      <button class="cu-btn content" open-type="feedback">
+        <text class="cuIcon-writefill text-cyan"></text>
+        <text class="text-grey">意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow" wx:if="{{hasLogined}}">
+      <view class="content" bindtap="loginout">
+        <text class="cuIcon-creativefill text-orange"></text>
+        <text class="text-grey">注销退出</text>
+      </view>
+    </view>
+  </view>
+  <view class="cu-tabbar-height"></view>
+
+</scroll-view>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="index">
+    <view class='cuIcon-cu-image'>
+      <text class="cuIcon-{{tabbar=='index'?'homefill text-green':'home'}}"></text>
+    </view>
+    <view class="{{tabbar=='index'?'text-green':'text-gray'}}">首页</view>
+  </view>
+  <view class="action" bindtap="NavChange" data-cur="my">
+    <view class='cuIcon-cu-image'>
+      <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
+    </view>
+    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">组件</view>
+  </view>
+</view>

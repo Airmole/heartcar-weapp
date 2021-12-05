@@ -159,8 +159,9 @@ Page({
       method: 'POST',
       success: function(res){
         if (res.statusCode == 200) {
-          wx.setStorageSync('userinfo', data)
+          wx.setStorageSync('userInfo', data)
           wx.showToast({ title: '成功' })
+          setTimeout(function () { wx.redirectTo({ url: '../index/index' }) }, 1000)
         } else {
           wx.showToast({
             title: res.data,

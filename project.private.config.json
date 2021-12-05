@@ -1,4 +1,5 @@
 {
+  "setting": {},
   "condition": {
     "plugin": {
       "list": []
@@ -12,9 +13,15 @@
     "miniprogram": {
       "list": [
         {
-          "name": "pages/index/register",
+          "name": "pages/index/my",
+          "pathName": "pages/index/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "注册",
           "pathName": "pages/index/register",
-          "query": "type=driver",
+          "query": "",
           "scene": null
         }
       ]

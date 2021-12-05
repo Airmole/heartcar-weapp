@@ -1,0 +1,22 @@
+<!--pages/polyline/polyline.wxml-->
+<map id="myMap" style="width: 100%; height: {{mapHeight}}px;" longitude="{{nowLongitude}}" latitude="{{nowLatitude}}" scale='12' polyline="{{polyline}}" show-location>
+</map>
+
+<view class="action">
+  <scroll-view scroll-x class="bg-white nav text-center">
+    <view class="flex text-center justify-around">
+      <view wx:for="{{routes}}" wx:key="index" bindtap="polylineSelect" data-id="{{index}}">
+        <view class="cu-item flex-sub {{index==tabPolyline?'text-blue cur':''}}">
+          路线{{index+1}}
+        </view>
+        <view class="padding-top-sm text-xl {{index==tabPolyline?'text-blue':''}}">{{item.duration}}分钟</view>
+        <view class="padding-xs margin-bottom text-df {{index==tabPolyline?'text-blue':''}}">{{ item.distanceText }}公里</view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="justify-center radius-bottom bg-white">
+    <view class="flex flex-direction justify-center padding-bottom">
+      <button bindtap="submit" class="cu-btn bg-green lg round">确认订单</button>
+    </view>
+  </view>
+</view>

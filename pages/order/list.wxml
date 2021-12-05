@@ -1,0 +1,18 @@
+<!--pages/order/list.wxml-->
+<view class="cu-list menu sm-border card-menu margin">
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-titles text-green"></text> {{types[type]}}
+    </view>
+  </view>
+  <navigator url="../order/index?id={{item.id}}" class="cu-item arrow" wx:for="{{orderlist.data}}" wx:key="index">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-title text-green margin-right-xs"></text>{{item.start_text }}
+      </view>
+      <view>
+        <text class="cuIcon-title text-red margin-right-xs"></text>{{item.end_text}}
+      </view>
+    </view>
+  </navigator>
+</view>

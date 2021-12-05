@@ -1,0 +1,5 @@
+/* pages/polyline/polyline.wxss */
+
+.action {
+  height: 200px;
+}

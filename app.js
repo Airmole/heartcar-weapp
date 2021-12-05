@@ -1,11 +1,13 @@
 // app.js
 App({
   globalData: {
+    qmapKey: '2SMBZ-D32WV-ATNPI-UEOYY-SWIWT-LGBL4',
     domain: 'http://localhost/api',
     userInfo: null,
     openid: ''
   },
   onLaunch() {
+    this.globalData.userInfo = wx.getStorageSync('userInfo')
     this.getUserOpenId()
   },
   getUserOpenId: function (callback) {

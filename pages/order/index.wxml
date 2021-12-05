@@ -1,0 +1,36 @@
+<!--pages/order/index.wxml-->
+<view class="margin padding bg-white radius">
+  <view class="text-center text-xxl">{{statuses[order.status]}}</view>
+  <view class="flex text-xl justify-around margin-tb" wx:if="{{order.status > 0}}">
+    <view>{{order.driver ? order.driver.name : ''}}</view>
+    <view>{{order.driver ? order.driver.mobile : ''}}</view>
+  </view>
+  <view class="flex text-xl justify-around margin-tb" wx:if="{{order.driver}}">
+    <view>{{order.driver ? order.driver.car_model : ''}}</view>
+    <view>核载：{{order.driver ? order.driver.car_limit : '0'}}人</view>
+  </view>
+</view>
+
+
+<view class="margin bg-white radius">
+  <view class="cu-list grid col-4 radius">
+    <view class="cu-item" bindtap="cancelOrder" wx:if="{{order.status == 0 && mobile == order.user.mobile}}">
+      <view class="cuIcon-close text-red"></view>
+      <text>取消订单</text>
+    </view>
+  </view>
+</view>
+
+<view class="margin padding bg-white radius">
+  <view class="flex text-xl margin-tb">
+    <view>出发地点：{{order.start_text}}</view>
+  </view>
+  <view class="flex text-xl margin-tb">
+    <view>前往地点：{{order.end_text}}</view>
+  </view>
+  <view class="flex text-xl margin-tb">
+    <view>全程距离：{{order.distance}}公里</view>
+  </view>
+  <map id="map" style="width: 100%; height: 300px;" longitude="{{order.end.longitude}}" latitude="{{order.end.latitude}}" scale='11' polyline="{{polyline}}">
+  </map>
+</view>

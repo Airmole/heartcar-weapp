@@ -1,2 +1,63 @@
 <!--index.wxml-->
-index
+
+<map style="width: 100%;height: 300px;" longitude="{{nowLongitude}}" latitude="{{nowLatitude}}" scale="16" enable-3D="true" show-location="true" show-compass="true" enable-zoom="true" enable-scroll="true" enable-poi="true" enable-building="true"></map>
+
+<view class="margin">
+  <form>
+    <radio-group class="block">
+      <view class="cu-form-group solid-bottom padding-lr-xl margin-top radius-top">
+        <view wx:for="{{types}}" wx:key="index" bindtap="typeChange" data-type="{{item.value}}">
+          <radio checked="{{type === item.value}}" value="{{item.value}}"></radio>
+          <text class="margin-lr">{{item.label}}</text>
+        </view>
+      </view>
+    </radio-group>
+    <view class="cu-form-group">
+      <view class="title"><text class="cuIcon-title text-green"></text></view>
+      <input value="{{nowLocationText}}" style="color: #39b54a;" disabled="true"></input>
+    </view>
+    <view class="cu-form-group solid-bottom">
+      <view class="title"><text class="cuIcon-title text-orange"></text></view>
+      <input bindtap="choseTarget" value="{{targetLocationText}}" style="font-size: 21px;" disabled="true"></input>
+    </view>
+    <view class="cu-form-group padding justify-center radius-bottom">
+      <view class="flex flex-direction justify-center">
+        <button bindtap="submit" class="cu-btn bg-green lg round">立即拼车</button>
+      </view>
+    </view>
+  </form>
+</view>
+
+<view class="cu-list menu sm-border card-menu">
+  <view class="cu-bar bg-white solid-bottom">
+    <view class="action">
+      <text class="cuIcon-titles text-green"></text> 正在拼车
+    </view>
+  </view>
+  <navigator url="../order/index?id={{item.id}}" class="cu-item arrow" wx:for="{{orderlist.data}}" wx:key="index">
+    <view class="content padding-tb-sm">
+      <view>
+        <text class="cuIcon-title text-green margin-right-xs"></text>{{item.start_text }}
+      </view>
+      <view>
+        <text class="cuIcon-title text-red margin-right-xs"></text>{{item.end_text}}
+      </view>
+    </view>
+  </navigator>
+</view>
+
+
+<view class="cu-bar tabbar bg-white shadow foot">
+  <view class="action" bindtap="NavChange" data-cur="index">
+    <view class='cuIcon-cu-image'>
+    <text class="cuIcon-{{tabbar=='index'?'homefill text-green':'home'}}"></text>
+    </view>
+    <view class="{{tabbar=='index'?'text-green':'text-gray'}}">首页</view>
+  </view>
+  <view class="action" bindtap="NavChange" data-cur="my">
+    <view class='cuIcon-cu-image'>
+    <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
+    </view>
+    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">组件</view>
+  </view>
+</view>
