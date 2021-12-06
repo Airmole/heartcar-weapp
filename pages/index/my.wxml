@@ -6,7 +6,7 @@
     </view>
     <view class="margin-top-sm nickname" wx:if="{{hasLogined}}">{{userInfo.nickname}}</view>
     <view class="margin-top-sm nickname" bindtap="goLogin" wx:else>
-      <open-data type="userNickName"></open-data>您尚未登录
+      注册登录
     </view>
     <image src="https://upload-images.jianshu.io/upload_images/4697920-0b3859b5e4ef17ec.gif" mode="scaleToFill" class="gif-wave"></image>
   </view>

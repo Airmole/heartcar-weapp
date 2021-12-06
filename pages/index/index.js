@@ -90,6 +90,13 @@ Page({
       wx.showToast({ title: '请选择目的地', icon: 'none' })
       return
     }
+
+    if (!app.globalData.userInfo) {
+      wx.showToast({ title: '请先注册登录',icon: 'none' })
+      setTimeout(function () { wx.redirectTo({ url: '../index/register' }) }, 1000)
+      return
+    }
+
     const polylinePara = {
       now: {
         text: nowLocationText,

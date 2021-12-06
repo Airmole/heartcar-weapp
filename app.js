@@ -7,6 +7,8 @@ App({
     openid: ''
   },
   onLaunch() {
+    // this.globalData.domain = 'http://101.42.94.134/api'
+
     this.globalData.userInfo = wx.getStorageSync('userInfo')
     this.getUserOpenId()
   },

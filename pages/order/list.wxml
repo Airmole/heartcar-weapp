@@ -5,6 +5,7 @@
       <text class="cuIcon-titles text-green"></text> {{types[type]}}
     </view>
   </view>
+  <view wx:if="{{orderlist.data.length <= 0}}" class="bg-white padding text-center"><text class="text-center">暂无可拼车订单</text></view>
   <navigator url="../order/index?id={{item.id}}" class="cu-item arrow" wx:for="{{orderlist.data}}" wx:key="index">
     <view class="content padding-tb-sm">
       <view>

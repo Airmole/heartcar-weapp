@@ -5,6 +5,7 @@
     "pages/order/index",
     "pages/order/list",
     "pages/index/my",
+    "pages/index/login",
     "pages/index/register"
   ],
   "window": {

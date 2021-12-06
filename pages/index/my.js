@@ -18,7 +18,7 @@ Page({
   },
   goLogin () {
     wx.navigateTo({
-      url: '',
+      url: './register',
     })
   },
   /**

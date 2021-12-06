@@ -1,0 +1,58 @@
+<!--pages/index/login.wxml-->
+<view class="padding-xl margin-xl"></view>
+<view class="padding-xl margin-xl"></view>
+
+<view class="text-center margin-xl">
+  <view class="cu-avatar xl round margin-tb" style="background-image:url(https://upload-images.jianshu.io/upload_images/4697920-e0f3dea72d3271f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240);"></view>
+  <!-- <view class="margin-bottom-xl"><text class="text-xl">从心拼车</text></view> -->
+</view>
+
+<view class="margin-xl margin-bottom-xs">
+  <form>
+    <view class="cu-form-group radius-top margin-top-xl">
+      <view class="title">手机号</view>
+      <input id="mobile" placeholder="手机号码" bindinput="inputChange"></input>
+    </view>
+    <view class="cu-form-group radius-bottom">
+      <view class="title">密码</view>
+      <input id="password" password="{{showPassword ? false : true}}" placeholder="请设置密码" bindinput="inputChange"></input>
+      <view class="cu-capsule" bindtap="displayPassword">
+        <view class="cu-tag bg-blue">
+          <text class="cuIcon-{{showPassword ? 'attentionfill' : 'attention'}}"></text>{{ showPassword ? '隐藏' : '显示' }}
+        </view>
+      </view>
+    </view>
+    <radio-group class="block">
+      <view class="cu-form-group radius-bottom">
+        <view wx:for="{{types}}" wx:key="index" bindtap="typeChange" data-type="{{item.value}}">
+          <radio checked="{{type === item.value}}" value="{{item.value}}"></radio>
+          <text class="margin-lr">{{item.label}}</text>
+        </view>
+      </view>
+    </radio-group>
+  </form>
+</view>
+
+<view class="margin-xl flex justify-between">
+  <navigator url="./index" class="text-center">
+    <text class="text-blue">暂不登录</text>
+  </navigator>
+</view>
+
+<view class="flex justify-around margin-lr-xl">
+  <view class="margin-lr-sm text-center">
+    <button bindtap="wechatLogin" style="width: 150px;" class="cu-btn round bg-green shadow">微信免密登录</button>
+  </view>
+  <view class="margin-lr-sm text-center">
+    <button bindtap="login" style="width: 150px;" class="cu-btn round bg-blue shadow">登录</button>
+  </view>
+</view>
+
+<view class="margin-xl flex justify-center">
+  <navigator url="./register?type=user" class="text-center margin-lr">
+    <text class="text-blue">用户注册</text>
+  </navigator>
+  <navigator url="./register?type=driver" class="text-center margin-lr">
+    <text class="text-blue">司机注册</text>
+  </navigator>
+</view>

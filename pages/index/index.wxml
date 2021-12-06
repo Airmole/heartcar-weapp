@@ -34,6 +34,7 @@
       <text class="cuIcon-titles text-green"></text> 正在拼车
     </view>
   </view>
+  <view wx:if="{{orderlist.data.length <= 0}}" class="bg-white padding text-center"><text class="text-center">暂无可拼车订单</text></view>
   <navigator url="../order/index?id={{item.id}}" class="cu-item arrow" wx:for="{{orderlist.data}}" wx:key="index">
     <view class="content padding-tb-sm">
       <view>
@@ -50,13 +51,13 @@
 <view class="cu-bar tabbar bg-white shadow foot">
   <view class="action" bindtap="NavChange" data-cur="index">
     <view class='cuIcon-cu-image'>
-    <text class="cuIcon-{{tabbar=='index'?'homefill text-green':'home'}}"></text>
+      <text class="cuIcon-{{tabbar=='index'?'homefill text-green':'home'}}"></text>
     </view>
     <view class="{{tabbar=='index'?'text-green':'text-gray'}}">首页</view>
   </view>
   <view class="action" bindtap="NavChange" data-cur="my">
     <view class='cuIcon-cu-image'>
-    <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
+      <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
     </view>
     <view class="{{tabbar=='my'?'text-green':'text-gray'}}">组件</view>
   </view>

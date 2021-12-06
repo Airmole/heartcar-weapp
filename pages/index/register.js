@@ -8,7 +8,7 @@ Page({
   data: {
     type: 'user',  // user乘客， driver 驾驶员
     showPassword: false,
-    idcard: '321123199910240011',
+    idcard: '622825199807210033',
     name: '',
     mobile: '',
     password: '',
@@ -159,9 +159,9 @@ Page({
       method: 'POST',
       success: function(res){
         if (res.statusCode == 200) {
-          wx.setStorageSync('userInfo', data)
-          wx.showToast({ title: '成功' })
-          setTimeout(function () { wx.redirectTo({ url: '../index/index' }) }, 1000)
+          // wx.setStorageSync('userInfo', data)
+          wx.showToast({ title: '成功，请登录' })
+          setTimeout(function () { wx.redirectTo({ url: '../index/login' }) }, 1000)
         } else {
           wx.showToast({
             title: res.data,
