@@ -11,13 +11,48 @@
   </view>
 </view>
 
-
-<view class="margin bg-white radius">
+<!-- 乘客操作 -->
+<view class="margin bg-white radius" wx:if="{{ userType != 'driver'}}">
   <view class="cu-list grid col-4 radius">
     <view class="cu-item" bindtap="cancelOrder" wx:if="{{order.status == 0 && mobile == order.user.mobile}}">
       <view class="cuIcon-close text-red"></view>
       <text>取消订单</text>
     </view>
+    <view class="cu-item" bindtap="join" wx:if="{{order.status == 0 && mobile != order.user.mobile}}">
+      <view class="cuIcon-add text-green"></view>
+      <text>加入拼车</text>
+    </view>
+    <view class="cu-item" bindtap="finishOrder" wx:if="{{order.status == 1 || order.status == 2}}">
+      <view class="cuIcon-check text-green"></view>
+      <text>已完成</text>
+    </view>
+  </view>
+</view>
+
+<!-- 司机操作 -->
+<view class="margin bg-white radius" wx:if="{{ userType == 'driver'}}">
+  <view class="cu-list grid col-4 radius">
+    <view class="cu-item" bindtap="acceptOrder" wx:if="{{order.status == 0}}">
+      <view class="cuIcon-check text-green"></view>
+      <text>接单</text>
+    </view>
+    <view class="cu-item" bindtap="cancelOrder" wx:if="{{(order.status == 1||order.status == 2) && mobile == order.driver.mobile}}">
+      <view class="cuIcon-close text-red"></view>
+      <text>取消订单</text>
+    </view>
+    <!-- 订单完成权在用户手中 -->
+    <!-- <view class="cu-item" bindtap="finishOrder" wx:if="{{order.status == 1 || order.status == 2}}">
+      <view class="cuIcon-check text-green"></view>
+      <text>已完成</text>
+    </view> -->
+  </view>
+</view>
+
+<!-- 车费 -->
+<view class="margin padding bg-white radius flex justify-center" wx:if="{{ userType != 'driver'}}">
+  <view class="text-sl margin-tb text-red">
+    <view class="text-price text-red text-center">{{order.fee}}</view>
+    <button bindtap="pay" class="cu-btn round bg-green shadow">立即支付</button>
   </view>
 </view>
 

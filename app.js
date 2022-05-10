@@ -2,12 +2,13 @@
 App({
   globalData: {
     qmapKey: '2SMBZ-D32WV-ATNPI-UEOYY-SWIWT-LGBL4',
-    domain: 'http://localhost/api',
+    domain: 'https://heartcar.airmole.cn/api',
     userInfo: null,
     openid: ''
   },
   onLaunch() {
-    // this.globalData.domain = 'http://101.42.94.134/api'
+    this.globalData.domain = 'https://heartcar.airmole.cn/api'
+    // this.globalData.domain = 'http://localhost/api'
 
     this.globalData.userInfo = wx.getStorageSync('userInfo')
     this.getUserOpenId()

@@ -1,31 +1,30 @@
-// index.js
+// pages/order/join.js
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min')
 var qqmapsdk
 const chooseLocation = requirePlugin('chooseLocation')
 // 获取应用实例
 const app = getApp()
-
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    tabbar: 'index',
+    id: 0,
     nowLocationText: '当前位置',
     nowLongitude: 117.396018,
     nowLatitude: 39.545546,
     targetLocationText: '请选择你的目的地',
     targetLatitude: '',
     targetLongitude: '',
-    type: 'self',
-    types: [{
-      label: '专车独享',
-      value: 'self'
-    }, {
-      label: '经济拼车',
-      value: 'share'
-    }],
-    orderlist: '',
-    userType: 'user'
   },
-  onLoad() {
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    console.log('join', options)
+    this.setData({ id: options.id })
     qqmapsdk = new QQMapWX({ key: app.globalData.qmapKey })
     var _this = this
     wx.getLocation({
@@ -39,7 +38,18 @@ Page({
       }
     })
   },
-  onShow() {
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
     const targetlocation = chooseLocation.getLocation()
     if (targetlocation) {
       console.log('location', targetlocation)
@@ -49,9 +59,9 @@ Page({
         targetLongitude: targetlocation.longitude
       })
     }
-    this.getOrderList()
-    this.getUserType()
   },
+
+
   // 获取用户定位文字描述
   getLocationText (latitude, longitude) {
     var _this = this
@@ -76,10 +86,6 @@ Page({
       url: 'plugin://chooseLocation/index?key=' + app.globalData.qmapKey + '&referer=从心拼车'
     })    
   },
-  typeChange (e) {
-    const type = e.currentTarget.dataset.type
-    this.setData({ type: type })
-  },
   submit () {
     const nowLocationText = this.data.nowLocationText
     const nowLongitude = this.data.nowLongitude
@@ -87,7 +93,6 @@ Page({
     const targetLocationText = this.data.targetLocationText
     const targetLatitude = this.data.targetLatitude
     const targetLongitude = this.data.targetLongitude
-    const type = this.data.type
     if (targetLongitude == '' || targetLatitude == '') {
       wx.showToast({ title: '请选择目的地', icon: 'none' })
       return
@@ -110,9 +115,9 @@ Page({
         longitude: targetLongitude,
         latitude: targetLatitude
       },
-      type: type
+      type: 'join',
+      id: this.data.id
     }
-    console.log('出行信息', polylinePara)
     app.globalData.polylinePara = polylinePara
     
     if (!app.globalData.userInfo) {
@@ -122,26 +127,38 @@ Page({
     
     wx.navigateTo({ url: '../polyline/polyline' })
   },
-  getOrderList () {
-    var _this = this
-    wx.request({
-      url: app.globalData.domain + '/order?type=' + app.globalData.userInfo.type,
-      success (res) {
-        if (res.statusCode == 200) {
-          _this.setData({ orderlist: res.data })
-        }
-      }
-    })
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
-  onUnload () {
-    // 页面卸载时设置插件选点数据为null，防止再次进入页面，geLocation返回的是上次选点结果
-    chooseLocation.setLocation(null)
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
   },
-  NavChange (e) {
-    const tarrgetTab = e.currentTarget.dataset.cur
-    wx.redirectTo({ url: tarrgetTab })
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
   },
-  getUserType () {
-    this.setData({ userType: app.globalData.userInfo.type })
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

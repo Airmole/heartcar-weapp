@@ -116,6 +116,7 @@ Page({
       success: function(res){
         if (res.statusCode == 200 && res.data.message == 'success') {
           console.log('登录成功', res.data)
+          app.globalData.userInfo = res.data.data
           wx.setStorageSync('userInfo', res.data.data)
           wx.showToast({ title: '登录成功' })
           setTimeout(function () { wx.redirectTo({ url: '../index/index' }) }, 1000)
@@ -151,6 +152,7 @@ Page({
         if (res.statusCode == 200 && res.data.message == 'success') {
           console.log('登录成功', res.data)
           wx.setStorageSync('userInfo', res.data.data)
+          app.globalData.userInfo = res.data.data
           wx.showToast({ title: '登录成功' })
           setTimeout(function () { wx.redirectTo({ url: '../index/index' }) }, 1000)
         } else if (res.statusCode == 403 && res.data.message == '未注册') {

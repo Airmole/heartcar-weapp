@@ -8,7 +8,7 @@ Page({
   data: {
     type: 'user',  // user乘客， driver 驾驶员
     showPassword: false,
-    idcard: '622825199807210033',
+    idcard: '',
     name: '',
     mobile: '',
     password: '',

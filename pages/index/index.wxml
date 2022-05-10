@@ -1,8 +1,8 @@
 <!--index.wxml-->
 
-<map style="width: 100%;height: 300px;" longitude="{{nowLongitude}}" latitude="{{nowLatitude}}" scale="16" enable-3D="true" show-location="true" show-compass="true" enable-zoom="true" enable-scroll="true" enable-poi="true" enable-building="true"></map>
+<map wx:if="{{userType!='driver'}}" style="width: 100%;height: 300px;" longitude="{{nowLongitude}}" latitude="{{nowLatitude}}" scale="16" enable-3D="true" show-location="true" show-compass="true" enable-zoom="true" enable-scroll="true" enable-poi="true" enable-building="true"></map>
 
-<view class="margin">
+<view wx:if="{{userType!='driver'}}" class="margin">
   <form>
     <radio-group class="block">
       <view class="cu-form-group solid-bottom padding-lr-xl margin-top radius-top">
@@ -28,7 +28,7 @@
   </form>
 </view>
 
-<view class="cu-list menu sm-border card-menu">
+<view class="cu-list menu sm-border card-menu margin-top">
   <view class="cu-bar bg-white solid-bottom">
     <view class="action">
       <text class="cuIcon-titles text-green"></text> 正在拼车
@@ -59,6 +59,6 @@
     <view class='cuIcon-cu-image'>
       <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
     </view>
-    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">组件</view>
+    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">我</view>
   </view>
 </view>

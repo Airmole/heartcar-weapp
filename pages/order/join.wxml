@@ -1,0 +1,18 @@
+<!--pages/order/join.wxml-->
+<view class="margin">
+  <form>
+    <view class="cu-form-group">
+      <view class="title"><text class="cuIcon-title text-green"></text></view>
+      <input value="{{nowLocationText}}" style="color: #39b54a;" disabled="true"></input>
+    </view>
+    <view class="cu-form-group solid-bottom">
+      <view class="title"><text class="cuIcon-title text-orange"></text></view>
+      <input bindtap="choseTarget" value="{{targetLocationText}}" style="font-size: 21px;" disabled="true"></input>
+    </view>
+    <view class="cu-form-group padding justify-center radius-bottom">
+      <view class="flex flex-direction justify-center">
+        <button bindtap="submit" class="cu-btn bg-green lg round">加入拼车</button>
+      </view>
+    </view>
+  </form>
+</view>

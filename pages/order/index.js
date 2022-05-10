@@ -11,7 +11,8 @@ Page({
     order: '',
     polyline: '',
     allpoints: '',
-    statuses: ['待接单', '已接单', '进行中', '订单结束', '已取消']
+    statuses: ['待接单', '已接单', '进行中', '订单结束', '已取消'],
+    userType: 'user',
   },
 
   /**
@@ -50,6 +51,59 @@ Page({
       }
     })
   },
+  acceptOrder  () {
+    const id = this.data.id
+    let _this = this
+    wx.showModal({
+      title: '提示',
+      content: '确认接单吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.domain + '/order/' + id + '/accept',
+            method: 'POST',
+            data: { mobile: _this.data.mobile },
+            success: function (ress) {
+              if (ress.statusCode == 200) {
+                _this.getDetail(id)
+                setTimeout(function () { wx.showToast({ title: '已成功截单', icon: 'none' }) }, 1000)
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+  finishOrder  () {
+    const id = this.data.id
+    let _this = this
+    wx.showModal({
+      title: '提示',
+      content: '确认完成订单吗？',
+      success(res) {
+        if (res.confirm) {
+          wx.request({
+            url: app.globalData.domain + '/order/' + id + '/finish',
+            method: 'POST',
+            data: {
+              mobile: _this.data.mobile,
+              driver: app.globalData.userInfo.type == 'driver' ? 1 : 0
+             },
+            success: function (ress) {
+              if (ress.statusCode == 200) {
+                _this.getDetail(id)
+                setTimeout(function () { wx.showToast({ title: '已成功截单', icon: 'none' }) }, 1000)
+              }
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
   cancelOrder() {
     const id = this.data.id
     let _this = this
@@ -77,7 +131,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserType()
   },
 
   /**
@@ -136,4 +190,23 @@ Page({
     })
     _this.setData({ polyline: polyline, allpoints: allpoints })
   },
+  getUserType () {
+    this.setData({ userType: app.globalData.userInfo.type })
+  },
+  join () {
+    const orderId = this.data.id
+    if (this.data.order.passengers.indexOf(app.globalData.userInfo.id) >= 0) {
+      wx.showToast({ title: '您已经加入拼车了' })
+      return
+    }
+    wx.navigateTo({
+      url: './join?id=' + orderId,
+    })
+  },
+  pay () {
+    wx.showToast({
+      title: '非认证企业，无法接入微信支付',
+      icon: 'none'
+    })
+  }
 })

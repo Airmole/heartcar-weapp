@@ -4,6 +4,7 @@
     "pages/polyline/polyline",
     "pages/order/index",
     "pages/order/list",
+    "pages/order/join",
     "pages/index/my",
     "pages/index/login",
     "pages/index/register"

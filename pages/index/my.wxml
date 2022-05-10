@@ -35,7 +35,7 @@
 
 
   <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
-    <navigator class="cu-item arrow" url="./register?type=driver">
+    <navigator wx:if="{{userInfo.type!='driver'}}" class="cu-item arrow" url="./register?type=driver">
       <button class="cu-btn content">
         <text class="cuIcon-roundaddfill text-cyan"></text>
         <text class="text-grey">成为司机</text>
@@ -70,6 +70,6 @@
     <view class='cuIcon-cu-image'>
       <text class="cuIcon-{{tabbar=='my'?'profilefill text-green':'profile'}}"></text>
     </view>
-    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">组件</view>
+    <view class="{{tabbar=='my'?'text-green':'text-gray'}}">我</view>
   </view>
 </view>

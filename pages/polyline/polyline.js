@@ -45,11 +45,13 @@ Page({
         longitude: app.globalData.polylinePara.target.longitude
       },
       distance: selectRoute.distanceText,
-      type: app.globalData.polylinePara.type == 'self' ? '0' : '1'
+      type: app.globalData.polylinePara.type == 'self' ? '0' : '1',
+      order_id: app.globalData.polylinePara.type == 'join' ? app.globalData.polylinePara.id : ''
     }
     console.log(order)
+    const url = app.globalData.polylinePara.type == 'join' ? app.globalData.domain + '/order/'+ app.globalData.polylinePara.id + '/join' : app.globalData.domain + '/order'
     wx.request({
-      url: app.globalData.domain + '/order',
+      url: url,
       data: order,
       method: 'POST',
       success: function(res){

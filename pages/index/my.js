@@ -1,4 +1,5 @@
 // pages/index/my.js
+var app = getApp()
 Page({
 
   /**
@@ -32,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.inital()
   },
 
   /**
@@ -86,10 +87,17 @@ Page({
       success(res) {
         if (res.confirm) {
           wx.clearStorageSync()
+          app.globalData.userInfo = null
+          wx.reLaunch({
+            url: './index',
+          })
         } else if (res.cancel) {
           console.log('用户点击取消')
         }
       }
     })
+  },
+  getUserType () {
+    this.setData({ userType: app.globalData.userInfo.type })
   }
 })

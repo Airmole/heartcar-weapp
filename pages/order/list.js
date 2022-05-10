@@ -30,11 +30,14 @@ Page({
     const types = ['all', 'picking', 'finish']
     let typeval = types[type]
 
+    console.log(app.globalData.userInfo)
+
     wx.request({
       url: app.globalData.domain + '/order/my',
       data: {
         mobile: app.globalData.userInfo.mobile,
-        type: typeval
+        type: typeval,
+        driver: app.globalData.userInfo.type == 'driver' ? 1 : 0,
       },
       success (res) {
         if (res.statusCode == 200) {
